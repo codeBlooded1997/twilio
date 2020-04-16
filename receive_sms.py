@@ -16,13 +16,13 @@ def sms_reply():
 
     # Put a message in our response object
     automatic_response.message("This is an autoreply from Python 🐍 and Twilio 🟪.")
-    pritn(automatic_response)
+    print(automatic_response)
 
     # Return message to our flask website
     return str(automatic_response)
 
 # Linking a specific url to function
-web_app.add_url_rule('/sms', 'sms_reply', sms_reply)   # When ew get to '/' url call flask_url function
+web_app.add_url_rule('/sms', 'sms_reply', sms_reply, methods=['GET', 'POST'])   # When ew get to '/' url call flask_url function
 
 # Code starts here
 if __name__ == '__main__':   # If we run this from commandline, then run the app
