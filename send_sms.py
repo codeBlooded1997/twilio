@@ -14,10 +14,13 @@ client = Client(account_sid, auth_token)
 
 #
 sender = "+16194326457"
-receiver = my_cell_number
+numbers = [my_cell_number, my_cell_number]
+blacklist = ["+10123456789"]
+receivers = list(set(numbers).difference(set(blacklist)))
 
-# The text that we will text out
-text = "Yo, wassup."
+for receiver in receivers:
+    # The text that we will text out
+    text = "Yo, wassup."
 
-# Use the client to send the SMS text
-client.messages.create(to=receiver, from_=sender, body=text) # create method, creates and sends sms in one step
+    # Use the client to send the SMS text
+    client.messages.create(to=receiver, from_=sender, body=text) # create method, creates and sends sms in one step
