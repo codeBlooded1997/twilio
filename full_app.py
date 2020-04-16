@@ -39,7 +39,7 @@ def broadcast():
                "\n\nReply B to be blacklisted and stop receiving texts from us."
 
         # Use the client to send the SMS text
-        client.messages.create(to=receiver, from_=sender, body=text) # create method, creates and sends sms in one step
+        client.messages.create(to=receiver, from_=sender, body=text, media_url='') # create method, creates and sends sms in one step
 
 
 
@@ -57,15 +57,17 @@ def sms_reply():
         message_body = request.form['Body']
 
         # If they reply Y
-        if message_body = 'Y':
+        if message_body == 'Y':
             response_text = "This is an autoreply from Python 🐍 and Twilio 🟪."
 
         # If they requested to be blacklisted
-        if message_body = 'B':
+        if message_body == 'B':
             # Appending the number to list of blacklisted numbers
-            blackllist.append(number)
+            blacklist.append(number)
             df = pd.DataFrame(blacklist, columns=['phone'])
-            print(df)
+            df.to_csv('blacklist.csv', index=False)
+            response_text = "You have been removed from our list."
+
 
 
     # Create a response object (translates string to twiml for us. Twilio excpects twiml.)
