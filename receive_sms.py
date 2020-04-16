@@ -5,10 +5,10 @@ from flask import Flask
 web_app = Flask(__name__)
 
 #
-def flask_url():
-    return "Hello"
+def sms_reply():
+    return "This is an autoreply from Python 🐍 and Twilio 🟪."
 
 # Linking a specific url to function
-web_app.add_url_rule('/Y', 'flask_url', flask_url)   # When ew get to '/' url call flask_url function
+web_app.add_url_rule('/sms', 'sms_reply', sms_reply)   # When ew get to '/' url call flask_url function
 
 web_app.run()
