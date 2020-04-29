@@ -1,13 +1,16 @@
-#./ngrok http 5000 Updat required every time ngrok serer restaarts.
 # Import twilio
 # Client creates a Client object in our python app to let us communicte with client
 from twilio.rest import Client
+
 #
 from my_secret_numbers import my_auth_token, my_cell_number
+
 # for csv files
 import pandas as pd
+
 # Import the flask framework
 from flask import Flask, request
+
 # Class in twillion that allows us to response to the text messages when someone text to our twilio phone number
 # This is needed to responde to any texts the come in
 from twilio.twiml.messaging_response import MessagingResponse
@@ -26,7 +29,6 @@ numbers = pd.read_csv('numbers.csv', names=['phone']).phone.tolist()[1:]
 blacklist = pd.read_csv('blacklist.csv', names=['phone']).phone.tolist()[1:]
 receivers = list(set(numbers).difference(set(blacklist)))
 
-# Broadcast the initial text to get subscribers aware.
 def broadcast():
     for receiver in receivers:
         # The text that we will text out
@@ -35,16 +37,16 @@ def broadcast():
                "\n\nReply B to be blacklisted and stop receiving texts from us."
 
         # Use the client to send the SMS text
-        client.messages.create(to=receiver, from_=sender, body=text, media_url='') # create method, creates and sends sms in one step
+        client.messages.create(to=receiver, from_=sender, body=text, media_url='http://www.thegeographeronline.net/uploads/2/6/6/2/26629356/4538278_orig.jpg') # create method, creates and sends sms in one step
+
 
 
 # Create our flask app
 web_app = Flask(__name__)
 
-
+#
 def sms_reply():
 
-    # Checking if the receiver is replying
     if request.method == 'POST':
         # Getting the incoming data from subscriber
         number = request.form['From']
@@ -52,7 +54,9 @@ def sms_reply():
 
         # If they reply Y
         if message_body == 'Y':
-            response_text = "This is an autoreply from Python 🐍 and Twilio 🟪."
+            response_text = "🔥🔥🔥\n\nLink to our new video :\n\n" + \
+                            "\n\n" + \
+                            "https://www.youtube.com/watch?v=Iq7eh6DhN6M&t=104s"
 
         # If they requested to be blacklisted
         if message_body == 'B':
@@ -60,7 +64,7 @@ def sms_reply():
             blacklist.append(number)
             df = pd.DataFrame(blacklist, columns=['phone'])
             df.to_csv('blacklist.csv', index=False)
-            response_text = "You have been removed from our list."
+            response_text = "❌\n\nYou have been removed from our list."
 
     # Create a response object (translates string to twiml for us. Twilio excpects twiml.)
     automatic_response = MessagingResponse()
