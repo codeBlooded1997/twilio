@@ -16,14 +16,14 @@ from flask import Flask, request
 from twilio.twiml.messaging_response import MessagingResponse
 
 # Codes required by twiliio. These are specific to the twilio account being used.
-account_sid = "AC81b4362f605c6398a48da412dcff6926"
+account_sid = "YOUR TWILIO ACCOUNT SID"
 auth_token = my_auth_token
 
 # Make our twilio Client (Unoque to out account)
 client = Client(account_sid, auth_token)
 
-#
-sender = "+16194326457"
+# Sender's phone number
+sender = "SENDER'S PHONE NUMBER"
 # Reads the csv file with the columns that we want and we pick out the column and pass it to the list ans slice the first item
 numbers = pd.read_csv('numbers.csv', names=['phone']).phone.tolist()[1:]
 blacklist = pd.read_csv('blacklist.csv', names=['phone']).phone.tolist()[1:]
