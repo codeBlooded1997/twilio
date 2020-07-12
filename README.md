@@ -1,5 +1,5 @@
 
-<h1>SMS Broadcasting/h1>
+<h1>SMS Broadcasting Auto-replying App</h1>
 <p>Arian Aghnaei</p>
 <p>Feb 2020</p>
 <p>Python 3.8</p>
