@@ -10,7 +10,10 @@ web_app = Flask(__name__)
 
 #
 def sms_reply():
-
+    """
+    This function handles replying to messages using falsk app.
+    This is only for understanding the proccess and updated version of this function is used in the finall app.
+    """
     # Create a response object (translates string to twiml for us. Twilio excpects twiml.)
     automatic_response = MessagingResponse()
 
