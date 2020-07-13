@@ -22,6 +22,7 @@
 <br>
 <hr />
 <h2>How to use</h2>
+
 <ol>
   <li>Update sender phonoe number data in full_app_finall.py (line 26).</li>
   <li>Update account sid credentials in line 19 (You can access your sid number from twilio account dashboard.)</li>
